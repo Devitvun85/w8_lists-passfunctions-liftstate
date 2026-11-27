@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theme/theme.dart';
 //1. because ProfileApp will use the ProfileData type.
 import '../../model/profile_tile_model.dart';
@@ -21,12 +22,10 @@ class ProfileApp extends StatelessWidget {
         centerTitle: true,
       ),
       //៣.manage the scrolling
-      // body: Center(child: Column( 
+      // body: Center(child: Column(
       //change to ListView
       body: ListView(
-        
         children: [
-          
           const SizedBox(height: 40),
           //wrap with center
           Center(
@@ -44,7 +43,6 @@ class ProfileApp extends StatelessWidget {
             //3. 'Ronan OGOR',
             profile.name,
             textAlign: TextAlign.center,
-
 
             style: TextStyle(
               fontSize: 24,
@@ -72,13 +70,8 @@ class ProfileApp extends StatelessWidget {
 
           //២. replace the static to loop
           //5. For every TileData inside profile.tiles, create one ProfileTile.
-          ...profile.tiles.map(
-            (title) => ProfileTile(
-              icon: title.icon,
-              title: title.title,
-              data: title.value,
-            ),
-          ),
+          for (var tile in profile.tiles)
+            ProfileTile(icon: tile.icon, title: tile.title, data: tile.value),
         ],
       ),
     );

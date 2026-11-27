@@ -6,7 +6,7 @@ ProfileData ronanProfile = ProfileData(
   name: "Ronan",
   position: "Flutter Developer",
   //6. change photo location
-  avatarUrl: 'lib/EXERCISE-3.1/assets/w5-s2/aang.png',
+  avatarUrl: 'lib/EXERCISE-3/assets/w5-s2/aang.png',
   tiles: [
     TileData(icon: Icons.phone, title: "Phone Number", value: "+123 456 7890"),
     TileData(icon: Icons.location_on, title: "Address", value: "123 Cambodia"),
