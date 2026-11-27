@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:start_code/EXERCISE-3/model/profile_tile_model.dart';
-
 import '../theme/theme.dart';
-
+//1. because ProfileApp will use the ProfileData type.
+import '../../model/profile_tile_model.dart';
 
 class ProfileApp extends StatelessWidget {
+  //2. make ProfileApp receive a profile
   final ProfileData profile;
   const ProfileApp({super.key, required this.profile});
 
@@ -20,40 +20,66 @@ class ProfileApp extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            CircleAvatar(
+      //៣.manage the scrolling
+      // body: Center(child: Column( 
+      //change to ListView
+      body: ListView(
+        
+        children: [
+          
+          const SizedBox(height: 40),
+          //wrap with center
+          Center(
+            child: CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage(profile.avatarUrl),
+              backgroundImage:
+                  //5. AssetImage('assets/images/w8/aang.png'),
+                  AssetImage(profile.avatarUrl),
+              //cuz img should come from ProfileDAta object
             ),
-            const SizedBox(height: 20),
-            Text(
-              profile.name,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
-            ),
-            Text(
-              profile.position,
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            const SizedBox(height: 20),
+          ),
+          const SizedBox(height: 20),
+          //១. The ProfileApp widget must take as argument a ProfileData object.
+          Text(
+            //3. 'Ronan OGOR',
+            profile.name,
+            textAlign: TextAlign.center,
 
-            Column(children: [
-              for (final tile in profile.tiles)
-                ProfileTile(
-                  icon: tile.icon,
-                  title: tile.title,
-                  data: tile.value,
-                ),
-            ],)
-          ],
-        ),
+
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: AppColors.primary,
+            ),
+          ),
+          Text(
+            //4.'Flutter Developer',
+            profile.position,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          const SizedBox(height: 20),
+          // const ProfileTile(
+          //   icon: Icons.phone,
+          //   title: "Phone Number",
+          //   data: "+123 456 7890",
+          // ),
+          // const ProfileTile(
+          //   icon: Icons.location_on,
+          //   title: "Address",
+          //   data: "Cambodia",
+          // ),
+
+          //២. replace the static to loop
+          //5. For every TileData inside profile.tiles, create one ProfileTile.
+          ...profile.tiles.map(
+            (title) => ProfileTile(
+              icon: title.icon,
+              title: title.title,
+              data: title.value,
+            ),
+          ),
+        ],
       ),
     );
   }

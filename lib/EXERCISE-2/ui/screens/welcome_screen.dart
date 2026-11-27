@@ -24,7 +24,9 @@ class WelcomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           OutlinedButton(
+
             onPressed: onpress,
+            
             style: OutlinedButton.styleFrom(
               side: const BorderSide(width: 1.0, color: Colors.white),
             ),
